@@ -4,7 +4,7 @@ import http from 'http';
 import createApp from './app';
 
 const app = createApp({
-  host: '',
+  host: 'bobs-epic-drone-shack-inc.herokuapp.com',
   cache: 'memory',
 });
 

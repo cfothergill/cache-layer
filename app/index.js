@@ -10,7 +10,7 @@ export default (config: AppConfig): App => {
   const proxy = createProxy(config.host, cache);
   const app = express();
 
-  app.get('/', proxy);
+  app.get('/api/v0/drones', proxy);
   app.get('/hello', proxy);
 
   return app;
