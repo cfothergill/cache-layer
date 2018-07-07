@@ -9,8 +9,8 @@ export default (cache: Cache, maxRetries: number) => {
     const res = await forward(req);
 
     if (res.status > 399) {
-      if (cache.has(req.url)) {
-        return cache.get(req.url);
+      if (await cache.has(req.url)) {
+        return await cache.get(req.url);
       }
 
       if (retries > 0) {
