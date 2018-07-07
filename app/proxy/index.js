@@ -4,7 +4,7 @@ import type { ExpressRoute, Cache } from '../types';
 import forward from './forward';
 import type { Request } from './forward';
 
-export default (host: string, cache: Cache): ExpressRoute => {
+export default (host: string, cache: Cache, maxRetries: number): ExpressRoute => {
   const proxy = async (req: Request, retries: number) => {
     const res = await forward(req);
 
@@ -28,10 +28,10 @@ export default (host: string, cache: Cache): ExpressRoute => {
         const { status, headers, body } = await proxy({
           url: url,
           headers: req.headers,
-        }, 5);
+        }, maxRetries);
 
         res.status(status).set(headers).send(body);
-        cache.set(url, { status, headers, body });
+        await cache.set(url, { status, headers, body });
       } catch (err) {
         next(err);
       }

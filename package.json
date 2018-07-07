@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "UNLICENSED",
   "scripts": {
+    "start": "babel-node index.js",
     "dev": "nodemon index.js --exec babel-node",
     "flow": "flow"
   },

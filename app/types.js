@@ -4,7 +4,7 @@ import type { IncomingMessage, ServerResponse } from 'http';
 import type { $Request, $Response, NextFunction } from 'express';
 
 export type CacheDriver = ('memory' | 'redis');
-export type AppConfig = { host: string; cache: CacheDriver; };
+export type AppConfig = { host: string; cache: CacheDriver; maxRetries: number };
 export type App = (IncomingMessage, ServerResponse) => void;
 export type ExpressRoute = (req: $Request, res: $Response, next: NextFunction) => void;
 

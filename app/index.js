@@ -7,11 +7,11 @@ import type { AppConfig, App } from './types';
 
 export default (config: AppConfig): App => {
   const cache = createCache(config.cache);
-  const proxy = createProxy(config.host, cache);
+  const proxy = createProxy(config.host, cache, config.maxRetries);
   const app = express();
 
   app.get('/api/v0/drones', proxy);
-  app.get('/hello', proxy);
+  app.get('/api/v0/drone/:id', proxy);
 
   return app;
 };
