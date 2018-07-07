@@ -1,11 +1,9 @@
 // @flow
 
-import type { RequestHandler } from './types';
+import type { ExpressRoute, Cache } from './types';
 
-const proxy = (endpoint: string): RequestHandler => {
+export default (host: string, cache: Cache): ExpressRoute => {
   return (req, res) => {
     res.json({ hello: 'world' });
   };
 };
-
-export default proxy;

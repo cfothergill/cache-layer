@@ -1,15 +1,13 @@
 // @flow
 
-import type { IncomingMessage, ServerResponse } from 'http';
 import express from 'express';
+import createCache from './cache';
 import createProxy from './proxy';
+import type { AppConfig, App } from './types';
 
-type Config = { host: string; cache: 'memory' | 'redis'; };
-type App = (IncomingMessage, ServerResponse) => void;
-
-const create = (config: Config): App => {
-  const cache = {};
-  const proxy = createProxy(config.host);
+export default (config: AppConfig): App => {
+  const cache = createCache(config.cache);
+  const proxy = createProxy(config.host, cache);
   const app = express();
 
   app.get('/', proxy);
@@ -17,5 +15,3 @@ const create = (config: Config): App => {
 
   return app;
 };
-
-export default create;
