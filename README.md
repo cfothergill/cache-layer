@@ -26,10 +26,10 @@ possibly as a form of CDN / Cache.
 
 ## How do we run your code?
 
-`cp .env.example .env`
-`yarn`
-`docker-compose up`
-`open http://localhost:3000/api/v0/drones`
+- `cp .env.example .env`
+- `yarn`
+- `docker-compose up`
+- `open http://localhost:3000/api/v0/drones`
 
 ## What future features do you think we might be able to build based on this API?
 
